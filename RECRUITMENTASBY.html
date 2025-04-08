@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recruitment Folder Access</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f4f6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 80px;
+      }
+      .box {
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+      }
+      input, select, button {
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      }
+      button {
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      button:hover {
+        background-color: #1e40af;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h2>Recruitment Folder Access</h2>
+      <form onsubmit="return redirectUser()">
+        <label for="department">Pilih Departemen:</label>
+        <select id="department" required>
+          <option value="">-- Pilih --</option>
+          <option value="iGV">iGV</option>
+          <option value="LM">LM</option>
+        </select>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required />
+
+        <button type="submit">Akses Folder</button>
+      </form>
+    </div>
+
+    <script>
+      function redirectUser() {
+        const dept = document.getElementById("department").value;
+        const pass = document.getElementById("password").value;
+
+        const folders = {
+          iGV: {
+            password: "iGVASBY1",
+            link: "https://drive.google.com/drive/folders/1PG0ApGJG0ncFELLQ7-7-xanEw4mAr_xF?usp=drive_link",
+          },
+          LM: {
+            password: "LMASBY2",
+            link: "https://drive.google.com/drive/folders/1vPkQ0bSN2cLpzJzb7wWeqIGLTMELgMJ8?usp=drive_link",
+          },
+        };
+
+        if (folders[dept]) {
+          if (pass === folders[dept].password) {
+            window.location.href = folders[dept].link;
+          } else {
+            alert("Password salah untuk departemen " + dept);
+          }
+        } else {
+          alert("Silakan pilih departemen.");
+        }
+
+        return false;
+      }
+    </script>
+  </body>
+</html>
